@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">JWPlayerDemo</string>
+    <string name="title_jwplayer">JW Player</string>
+    <string name="title_dashboard">JW Dashboard</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_save">Save</string>
+    <string name="title_jw_events">JW Events:</string>
+    <string name="title_file_url">File URL:</string>
+</resources>

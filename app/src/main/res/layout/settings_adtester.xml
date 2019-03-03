@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/jw_padding"
+    android:paddingRight="@dimen/jw_padding">
+
+
+    <RadioButton
+        android:id="@+id/use_adscheduleID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="JW Ad Schedule ID" />
+
+    <RadioButton
+        android:id="@+id/enable_ima"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Google IMA" />
+
+    <RadioButton
+        android:id="@+id/enable_vast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="VAST" />
+
+    <RadioButton
+        android:id="@+id/enable_freewheel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FreeWheel" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/enable_adrules"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/jw_padding"
+            android:paddingRight="@dimen/jw_padding"
+            android:text="Ad Rules" />
+
+        <CheckBox
+            android:id="@+id/vmap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/jw_padding"
+            android:paddingRight="@dimen/jw_padding"
+            android:text="VMAP" />
+
+        <CheckBox
+            android:id="@+id/enable_offset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/jw_padding"
+            android:paddingRight="@dimen/jw_padding"
+            android:text="Offset" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/ima_tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/default_edittext_size"
+        android:gravity="center"
+        android:hint="Paste Your Ad Tag URL Here" />
+</LinearLayout>

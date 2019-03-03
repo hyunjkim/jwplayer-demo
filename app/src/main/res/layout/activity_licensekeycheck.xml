@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/jw_linearlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="@dimen/jw_padding"
+    android:weightSum="3">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@drawable/ic_jw_logo" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="arial"
+        android:gravity="center"
+        android:text="Please Enter your Android SDK V3 License Key"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:linksClickable="true"
+        android:padding="@dimen/jw_padding"
+        android:text="Dashboard > Tools \nhttps://dashboard.jwplayer.com/#/welcome"
+        android:textColorLink="@color/ccl_blue"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/enter_licensekey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Enter your JW Player license key"
+        android:padding="@dimen/jw_padding"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/check_licensekey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/jw_padding"
+        android:text="Check License Key" />
+
+</LinearLayout>
