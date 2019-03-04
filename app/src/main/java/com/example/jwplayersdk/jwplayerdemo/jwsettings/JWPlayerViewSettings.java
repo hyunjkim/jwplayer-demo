@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.example.jwplayersdk.jwplayerdemo.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -90,14 +89,25 @@ public class JWPlayerViewSettings extends Fragment{
         return view;
     }
 
+    @OnClick({R.id.check_widevinedrm,})
+    void onRadioButtonSelected(View radioBtn) {
+
+        switch(radioBtn.getId()){
+            case R.id.check_widevinedrm:
+                toast("Use Widevine DRM");
+                this.getView().findViewById(R.id.check_headers).setVisibility(View.VISIBLE);
+                break;
+        }
+    }
+
     @OnClick({R.id.check_mediaID,R.id.check_playlistID,R.id.check_title,R.id.check_image,R.id.check_description,R.id.check_headers})
     void onCheckboxClicked(View checkBoxes) {
 
-        JWUIVisibilitySettings.setChecked(checkBoxSettingsList,checkBoxes.getId());
+        int id = checkBoxes.getId();
 
         switch(checkBoxes.getId()){
             case R.id.check_mediaID:
-                toast("Add MEDIA ID");
+                toast("Add Media ID");
                 break;
             case R.id.check_playlistID:
                 toast("Add Playlist ID");
@@ -111,26 +121,16 @@ public class JWPlayerViewSettings extends Fragment{
             case R.id.check_description:
                 toast("Add Description");
                 break;
-            case R.id.check_widevinedrm:
-                toast("Using Widevine DRM");
-                break;
             case R.id.check_headers:
-                toast("Add Custom Headers");
-                JWUIVisibilitySettings.showOptions(customHeadersBox);
+                toast(" Add Custom Headers");
+                JWUIVisibilitySettings.showLinearLayoutOptions(customHeadersBox);
                 break;
         }
 
-    }
-
-    @OnClick({R.id.check_widevinedrm,})
-    void onRadioButtonSelected(View radioBtn) {
-        switch(radioBtn.getId()){
-            case R.id.check_widevinedrm:
-                toast("Play Widevine DRM");
-//                JWUIVisibilitySettings.showOptions(checkBoxSettingsList,checkBoxSettingsList.size()-1);
-                break;
+        if(id != R.id.check_widevinedrm && id != R.id.check_headers) {
+            JWUIVisibilitySettings.setChecked(editTextList,id,checkBoxes.getId());
         }
-//        JWUIVisibilitySettings.hideOptions(checkBoxSettingsList);
+
     }
 
 

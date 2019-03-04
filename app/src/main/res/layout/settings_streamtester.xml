@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="50dp"
     android:background="@drawable/jw_settings_border"
     android:orientation="vertical"
     android:paddingLeft="@dimen/jw_padding"
@@ -21,13 +20,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:hint="Enter:  URL / JSON / playlist ID" />
+        android:hint="Enter URL or JSON"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textSize="@dimen/jw_hint_textsize" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/jw_padding"
-        android:text="Use default settings or pass custom"
+        android:text="Additional Settings"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
@@ -41,14 +44,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="@dimen/jw_padding"
-            android:text="Media ID:" />
+            android:text="Media ID"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/add_mediaID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="pass Media ID"
+            android:hint="Media ID"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLength="8"
+            android:maxLines="1"
             android:textSize="@dimen/default_edittext_size"
             android:visibility="visible" />
     </LinearLayout>
@@ -63,7 +71,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="@dimen/jw_padding"
-            android:text="Playlist ID:" />
+            android:text="Playlist ID"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/add_playlistID"
@@ -71,6 +80,10 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="pass Playlist ID"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLength="8"
+            android:maxLines="1"
             android:textSize="@dimen/default_edittext_size"
             android:visibility="visible" />
     </LinearLayout>
@@ -86,7 +99,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="@dimen/jw_padding"
-            android:text="Title:" />
+            android:text="Title"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/add_title"
@@ -94,6 +108,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="Set custom title or Use default"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLines="1"
             android:textSize="@dimen/default_edittext_size"
             android:visibility="visible" />
     </LinearLayout>
@@ -108,7 +125,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="@dimen/jw_padding"
-            android:text="Image:" />
+            android:text="Image"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/add_image"
@@ -116,6 +134,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="Set custom image or Use default"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLines="1"
             android:textSize="@dimen/default_edittext_size"
             android:visibility="visible" />
     </LinearLayout>
@@ -130,7 +151,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="@dimen/jw_padding"
-            android:text="Description:" />
+            android:text="Description"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/add_description"
@@ -138,6 +160,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="Set custom Description or Use default"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLines="1"
             android:textSize="@dimen/default_edittext_size"
             android:visibility="visible" />
     </LinearLayout>
@@ -147,7 +172,7 @@
         android:id="@+id/add_drm_values"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:visibility="visible">
 
         <RadioButton
@@ -155,7 +180,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="@dimen/jw_padding"
-            android:text="Widevine DRM" />
+            android:text="Widevine DRM"
+            android:textStyle="bold" />
 
         <CheckBox
             android:id="@+id/check_headers"
@@ -172,7 +198,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <EditText
             android:id="@+id/add_widevine_key"
@@ -181,8 +207,10 @@
             android:layout_weight="1"
             android:gravity="center"
             android:hint="custom name"
+            android:imeOptions="actionDone"
             android:inputType="text"
-            android:textSize="12sp" />
+            android:maxLines="1"
+            android:textSize="@dimen/jw_hint_textsize" />
 
         <EditText
             android:id="@+id/add_widevine_value"
@@ -191,8 +219,10 @@
             android:layout_weight="1"
             android:gravity="center"
             android:hint="custom value"
+            android:imeOptions="actionDone"
             android:inputType="text"
-            android:textSize="12sp" />
+            android:maxLines="1"
+            android:textSize="@dimen/jw_hint_textsize" />
     </LinearLayout>
 
 
@@ -208,6 +238,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:imeOptions="actionDone"
+            android:maxLines="1"
             android:text="Key" />
 
         <EditText
@@ -215,6 +247,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:imeOptions="actionDone"
+            android:maxLines="1"
             android:text="Value" />
     </LinearLayout>
 

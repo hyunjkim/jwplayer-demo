@@ -4,4 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="jw_padding">16dp</dimen>
     <dimen name="default_edittext_size">12sp</dimen>
+    <dimen name="jw_margin">16dp</dimen>
+    <dimen name="jw_hint_textsize">12sp</dimen>
 </resources>

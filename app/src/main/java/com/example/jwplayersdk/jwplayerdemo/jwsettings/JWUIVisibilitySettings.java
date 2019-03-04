@@ -1,7 +1,9 @@
 package com.example.jwplayersdk.jwplayerdemo.jwsettings;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -13,10 +15,12 @@ class JWUIVisibilitySettings {
 
     private static List<CheckBox> mCheckBoxSettingsList;
 
-    static void setChecked(List<CheckBox> checkBoxSettingsList, int checked) {
-        mCheckBoxSettingsList = checkBoxSettingsList;
+    private static List<EditText> mEditTextList;
+
+    static void setChecked(List<EditText> editTextList, int id, int checked) {
+        mEditTextList = editTextList;
         checkedItems.add(checked);
-        showOptions(checked);
+        getValues(id);
         hideOptions();
     }
 
@@ -24,20 +28,35 @@ class JWUIVisibilitySettings {
         return checkedItems;
     }
 
+    static void setRadioBtn(List<CheckBox> checkBoxSettingsList, int radioBtn) {
+        mCheckBoxSettingsList = checkBoxSettingsList;
+    }
+
     /*
      * Show the optional section
      * TODO: pass each index and then set the view -OR- get an array and set them all at once
      * */
-    private static void showOptions(int index) {
+    static void showOptions(int index) {
         if(index >= 0){
+            print("Check Box setting list :" + mCheckBoxSettingsList.get(index));
             mCheckBoxSettingsList.get(index).setVisibility(View.VISIBLE);
         }
+    }
+
+    private static void getValues(int index) {
+        if(index >= 0){
+            mEditTextList.get(index).getText();
+        }
+    }
+
+    private static void print(String s) {
+        Log.i("JWEVENT", "JWUIVisibilitySettings: "+ s);
     }
 
     /*
     * Show the options for headers and
     * */
-    static void showOptions(LinearLayout additionalOptionsUI) {
+    static void showLinearLayoutOptions(LinearLayout additionalOptionsUI) {
         additionalOptionsUI.setVisibility(View.VISIBLE);
     }
 
@@ -46,7 +65,8 @@ class JWUIVisibilitySettings {
      * */
     static void hideOptions() {
         for(CheckBox eachCheckBox : mCheckBoxSettingsList){
-            eachCheckBox.setVisibility(View.GONE);
+            if(!checkedItems.contains(eachCheckBox)) eachCheckBox.setVisibility(View.GONE);
         }
     }
+
 }
