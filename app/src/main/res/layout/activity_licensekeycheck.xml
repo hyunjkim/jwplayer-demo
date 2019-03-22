@@ -34,7 +34,7 @@
         android:linksClickable="true"
         android:padding="@dimen/jw_padding"
         android:text="Dashboard > Tools \nhttps://dashboard.jwplayer.com/#/welcome"
-        android:textColorLink="@color/ccl_blue"
+        android:textColorLink="@color/blue"
         android:textSize="12sp"
         android:textStyle="bold" />
 

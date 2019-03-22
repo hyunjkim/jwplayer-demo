@@ -1,4 +1,4 @@
-package com.example.jwplayersdk.jwplayerdemo;
+package com.example.jwplayerdemo;
 
 import org.junit.Test;
 

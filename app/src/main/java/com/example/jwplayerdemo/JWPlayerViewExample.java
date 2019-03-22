@@ -1,10 +1,11 @@
-package com.example.jwplayersdk.jwplayerdemo;
+package com.example.jwplayerdemo;
 
 import android.app.ActionBar;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -15,10 +16,10 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
-import com.example.jwplayersdk.jwplayerdemo.eventhandlers.JWAdEventHandler;
-import com.example.jwplayersdk.jwplayerdemo.eventhandlers.JWEventHandler;
-import com.example.jwplayersdk.jwplayerdemo.eventhandlers.KeepScreenOnHandler;
-import com.example.jwplayersdk.jwplayerdemo.jwutil.Logger;
+import com.example.jwplayerdemo.eventhandlers.JWAdEventHandler;
+import com.example.jwplayerdemo.eventhandlers.JWEventHandler;
+import com.example.jwplayerdemo.eventhandlers.KeepScreenOnHandler;
+import com.example.jwplayerdemo.jwutil.Logger;
 import com.google.ads.interactivemedia.v3.api.ImaSdkFactory;
 import com.google.ads.interactivemedia.v3.api.ImaSdkSettings;
 import com.longtailvideo.jwplayer.JWPlayerView;
@@ -56,7 +57,8 @@ public class JWPlayerViewExample extends Fragment implements
 
         mPlayerView = view.findViewById(R.id.jwplayer);
         TextView outputTextView = view.findViewById(R.id.output);
-        ScrollView scrollView = view.findViewById(R.id.scroll);
+//        ScrollView scrollView = view.findViewById(R.id.scroll);
+//        NestedScrollView scrollView = view.findViewById(R.id.scroll);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WebView.setWebContentsDebuggingEnabled(true);
@@ -74,10 +76,10 @@ public class JWPlayerViewExample extends Fragment implements
         new KeepScreenOnHandler(mPlayerView, getActivity().getWindow());
 
         // Instantiate the JW Player event handler class
-        new JWEventHandler(mPlayerView, outputTextView, scrollView);
+//        new JWEventHandler(mPlayerView, outputTextView, scrollView);
 
         // Instantiate the JW Player Ad event handler class
-        new JWAdEventHandler(mPlayerView, outputTextView, scrollView);
+//        new JWAdEventHandler(mPlayerView, outputTextView, scrollView);
 
         return view;
     }

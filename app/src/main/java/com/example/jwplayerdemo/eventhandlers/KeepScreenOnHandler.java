@@ -1,4 +1,4 @@
-package com.example.jwplayersdk.jwplayerdemo.eventhandlers;
+package com.example.jwplayerdemo.eventhandlers;
 
 import android.view.Window;
 import android.view.WindowManager;

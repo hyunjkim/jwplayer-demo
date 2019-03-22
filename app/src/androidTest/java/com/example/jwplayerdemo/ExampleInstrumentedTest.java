@@ -1,4 +1,4 @@
-package com.example.jwplayersdk.jwplayerdemo;
+package com.example.jwplayerdemo;
 
 import android.content.Context;
 import androidx.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.jwplayersdk.jwplayerdemo", appContext.getPackageName());
+        assertEquals("com.example.jwplayerdemo", appContext.getPackageName());
     }
 }

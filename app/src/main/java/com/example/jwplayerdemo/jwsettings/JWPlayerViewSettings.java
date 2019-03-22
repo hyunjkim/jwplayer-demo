@@ -1,4 +1,4 @@
-package com.example.jwplayersdk.jwplayerdemo.jwsettings;
+package com.example.jwplayerdemo.jwsettings;
 
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.example.jwplayersdk.jwplayerdemo.R;
+import com.example.jwplayerdemo.R;
 
 import java.util.List;
 
@@ -57,34 +57,6 @@ public class JWPlayerViewSettings extends Fragment{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_jwplayerviewsettings, container, false);
         ButterKnife.bind(this, view);
-
-        // Checkboxes
-//        checkBoxMediaID = view.findViewById(R.id.check_mediaID);
-//        checkBoxPlaylistID = view.findViewById(R.id.check_playlistID);
-//        checkBoxTitle = view.findViewById(R.id.check_title);
-//        checkBoxImage = view.findViewById(R.id.check_image);
-//        checkBoxDescription = view.findViewById(R.id.check_description);
-//        checkBoxDRM = view.findViewById(R.id.check_widevinedrm); // if checked, show addDrmValues
-//        addHeaders = view.findViewById(R.id.check_headers); // if checked, show addCustomHeaders
-//
-//        // Edit Text(s)
-//        mMediaID = view.findViewById(R.id.add_mediaID); // if checkBoxMediaID is checked, disable everyone else
-//        mPlaylistID = view.findViewById(R.id.add_playlistID); // if checkBoxPlaylistID is checked, disable everyone else
-//        setTitle = view.findViewById(R.id.add_title);
-//        setImage = view.findViewById(R.id.add_image);
-//        setDescription = view.findViewById(R.id.add_description);
-//        addStreamTag = view.findViewById(R.id.add_stream_tag);
-//
-//        // Show the Edit Text(s)
-//        addDrmValues = view.findViewById(R.id.add_drm_values);
-//        addCustomHeaders = view.findViewById(R.id.add_custom_headers);
-//
-//        // When the DRM or Headers were checked, then get the values that are passed here
-//        addWideVineKey = view.findViewById(R.id.add_header_key);
-//        addHeaderKey = view.findViewById(R.id.add_header_value);
-//        addWideVineKey = view.findViewById(R.id.add_widevine_key);
-//        addHeaderValue = view.findViewById(R.id.add_widevine_value);
-//        Button doneBtn = view.findViewById(R.id.done_btn);
 
         return view;
     }

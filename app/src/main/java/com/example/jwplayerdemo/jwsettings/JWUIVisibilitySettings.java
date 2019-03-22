@@ -1,4 +1,4 @@
-package com.example.jwplayersdk.jwplayerdemo.jwsettings;
+package com.example.jwplayerdemo.jwsettings;
 
 import android.util.Log;
 import android.view.View;

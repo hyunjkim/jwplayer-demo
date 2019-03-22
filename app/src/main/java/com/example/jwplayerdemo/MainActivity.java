@@ -1,14 +1,16 @@
-package com.example.jwplayersdk.jwplayerdemo;
+package com.example.jwplayerdemo;
 
 import android.os.Bundle;
+import android.widget.FrameLayout;
 
-import com.example.jwplayersdk.jwplayerdemo.jwsettings.JWPlayerViewSettings;
+import com.example.jwplayerdemo.behavior.BottomNavigationBehavior;
+import com.example.jwplayerdemo.jwsettings.JWPlayerViewSettings;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -16,10 +18,13 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.container)
-    ConstraintLayout CONTAINER;
+    CoordinatorLayout container;
 
     @BindView(R.id.bottom_navigation)
     BottomNavigationView navigation;
+
+    @BindView(R.id.framelayout)
+    FrameLayout mFrameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         final FragmentManager fragmentManager = getSupportFragmentManager();
+//
+//        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) navigation.getLayoutParams();
+//        layoutParams.setBehavior(new BottomNavigationBehavior());
 
         navigation.setOnNavigationItemSelectedListener(menuItem -> {
 
@@ -42,11 +50,16 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new JWPlayerViewSettings();
                     break;
             }
+
             fragmentManager.beginTransaction()
-                    .replace(CONTAINER.getId(), fragment)
+                    .replace(container.getId(), fragment)
                     .commit();
+
             return true;
+
         });
+
         navigation.setSelectedItemId(R.id.navigation_home);
+
     }
 }

@@ -1,19 +1,18 @@
 apply plugin: 'com.android.application'
 
 ext{
-    jwplayerVersion = '3.4.3'
+    jwplayerVersion = '3.5.0'
     supportLibVersion = '1.0.0-beta01'
 }
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.jwplayersdk.jwplayerdemo"
+        applicationId "com.example.jwplayerdemo"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -44,7 +43,6 @@ dependencies {
     implementation ("androidx.vectordrawable:vectordrawable:${supportLibVersion}"){
         force='true'
     }
-    implementation 'androidx.multidex:multidex:2.0.1'
     implementation "com.longtailvideo.jwplayer:jwplayer-core:${jwplayerVersion}"
     implementation "com.longtailvideo.jwplayer:jwplayer-common:${jwplayerVersion}"
 
