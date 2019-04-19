@@ -20,9 +20,9 @@ import io.fabric.sdk.android.Fabric;
 public class MainActivity extends AppCompatActivity {
 
     /*
-    * Instantiate CoordinatorLayout
-    * in order to use the "Hiding Bottom Navigation View Behavior"
-    * */
+     * Instantiate CoordinatorLayout
+     * in order to use the "Hiding Bottom Navigation View Behavior"
+     * */
     @BindView(R.id.container)
     CoordinatorLayout container;
 
