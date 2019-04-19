@@ -12,10 +12,21 @@
 #   public *;
 #}
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
-
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+
+
+# Fabrics ProGuard
+# Uncomment this to preserve the line number information for
+# debugging stack traces.
+-keepattributes SourceFile,LineNumberTable
+
+# https://docs.fabric.io/android/crashlytics/dex-and-proguard.html
+# Fabric uses annotations internally
+-keepattributes *Annotation*
+
+# custom exception types are skipped during obfuscation:
+-keep public class * extends java.lang.Exception
+

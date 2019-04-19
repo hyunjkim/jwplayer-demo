@@ -11,7 +11,8 @@ import java.util.List;
 
 class JWUIVisibilitySettings {
 
-    private static List<Integer> checkedItems = new ArrayList<>(); // Double check if this is okay to do, to instantiate it here
+    // TODO: Double check if this is okay to do, to instantiate it here
+    private static List<Integer> checkedItems = new ArrayList<>();
 
     private static List<CheckBox> mCheckBoxSettingsList;
 
@@ -54,7 +55,7 @@ class JWUIVisibilitySettings {
     }
 
     /*
-    * Show the options for headers and
+    * Show the options for headers
     * */
     static void showLinearLayoutOptions(LinearLayout additionalOptionsUI) {
         additionalOptionsUI.setVisibility(View.VISIBLE);

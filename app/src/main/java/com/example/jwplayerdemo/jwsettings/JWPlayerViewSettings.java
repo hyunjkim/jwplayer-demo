@@ -1,8 +1,8 @@
 package com.example.jwplayerdemo.jwsettings;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,12 +24,12 @@ import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class JWPlayerViewSettings extends Fragment{
+public class JWPlayerViewSettings extends Fragment {
 
-    @BindViews({R.id.check_mediaID, R.id.check_playlistID,R.id.check_title,R.id.check_image,R.id.check_description,R.id.check_headers})
+    @BindViews({R.id.check_mediaID, R.id.check_playlistID, R.id.check_title, R.id.check_image, R.id.check_description, R.id.check_headers})
     List<CheckBox> checkBoxSettingsList;
 
-    @BindViews({R.id.add_mediaID,R.id.add_playlistID,R.id.add_title,R.id.add_image,R.id.add_description,R.id.add_stream_tag,R.id.add_header_key,R.id.add_header_value,R.id.add_widevine_key,R.id.add_widevine_value})
+    @BindViews({R.id.add_mediaID, R.id.add_playlistID, R.id.add_title, R.id.add_image, R.id.add_description, R.id.add_stream_tag, R.id.add_header_key, R.id.add_header_value, R.id.add_widevine_key, R.id.add_widevine_value})
     List<EditText> editTextList;
 
     @BindView(R.id.check_widevinedrm)
@@ -46,7 +46,7 @@ public class JWPlayerViewSettings extends Fragment{
 
 
 //    private CheckBox checkBoxPlaylistID,checkBoxMediaID,checkBoxDRM,addHeaders,checkBoxTitle, checkBoxImage, checkBoxDescription, addCustomHeaders;
-//    private EditText mPlaylistID,mMediaID, setTitle,setImage,setDescription,addDrmValues,addStreamTag, addWideVineKey, addWideVineValue, addHeaderKey, addHeaderValue;
+//    private EditText mPlaylistID,mMediaID, setTitle,setImag`e,setDescription,addDrmValues,addStreamTag, addWideVineKey, addWideVineValue, addHeaderKey, addHeaderValue;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class JWPlayerViewSettings extends Fragment{
     @OnClick({R.id.check_widevinedrm,})
     void onRadioButtonSelected(View radioBtn) {
 
-        switch(radioBtn.getId()){
+        switch (radioBtn.getId()) {
             case R.id.check_widevinedrm:
                 toast("Use Widevine DRM");
                 this.getView().findViewById(R.id.check_headers).setVisibility(View.VISIBLE);
@@ -72,12 +72,12 @@ public class JWPlayerViewSettings extends Fragment{
         }
     }
 
-    @OnClick({R.id.check_mediaID,R.id.check_playlistID,R.id.check_title,R.id.check_image,R.id.check_description,R.id.check_headers})
+    @OnClick({R.id.check_mediaID, R.id.check_playlistID, R.id.check_title, R.id.check_image, R.id.check_description, R.id.check_headers})
     void onCheckboxClicked(View checkBoxes) {
 
         int id = checkBoxes.getId();
 
-        switch(checkBoxes.getId()){
+        switch (checkBoxes.getId()) {
             case R.id.check_mediaID:
                 toast("Add Media ID");
                 break;
@@ -99,15 +99,14 @@ public class JWPlayerViewSettings extends Fragment{
                 break;
         }
 
-        if(id != R.id.check_widevinedrm && id != R.id.check_headers) {
-            JWUIVisibilitySettings.setChecked(editTextList,id,checkBoxes.getId());
+        if (id != R.id.check_widevinedrm && id != R.id.check_headers) {
+            JWUIVisibilitySettings.setChecked(editTextList, id, checkBoxes.getId());
         }
 
     }
 
-
     private void toast(String str) {
-        Toast.makeText(getContext(),str, Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), str, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -115,12 +114,13 @@ public class JWPlayerViewSettings extends Fragment{
         inflater.inflate(R.menu.save_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle item selection
         switch (item.getItemId()) {
             case R.id.menu_save:
-                Toast.makeText(getContext(),"Saved!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Saved!", Toast.LENGTH_LONG).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);

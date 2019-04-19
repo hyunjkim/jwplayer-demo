@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/jw_settings_border"
-    android:orientation="vertical"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     android:padding="@dimen/jw_padding">
 
     <LinearLayout
@@ -20,7 +20,6 @@
             android:text="JW Ad Schedule ID" />
 
         <EditText
-            android:visibility="gone"
             android:id="@+id/add_adscheduleid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +29,8 @@
             android:inputType="text"
             android:maxLength="8"
             android:maxLines="1"
-            android:textSize="@dimen/jw_hint_textsize" />
+            android:textSize="@dimen/jw_hint_textsize"
+            android:visibility="gone" />
     </LinearLayout>
 
     <RadioButton
@@ -47,45 +47,46 @@
         android:layout_weight="1"
         android:text="VAST" />
 
-    <!--<RadioButton-->
-    <!--android:id="@+id/enable_freewheel"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="0dp"-->
-    <!--android:layout_weight="1"-->
-    <!--android:text="FreeWheel" />-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:visibility="gone">
 
+        <CheckBox
+            android:id="@+id/enable_adrules"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/jw_padding"
+            android:paddingRight="@dimen/jw_padding"
+            android:text="Ad Rules" />
 
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="0dp"-->
-    <!--android:layout_weight="1"-->
-    <!--android:gravity="center_horizontal"-->
-    <!--android:orientation="horizontal">-->
+        <CheckBox
+            android:id="@+id/enable_offset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/jw_padding"
+            android:text="Offset" />
 
-    <!--<CheckBox-->
-    <!--android:id="@+id/enable_adrules"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:paddingLeft="@dimen/jw_padding"-->
-    <!--android:paddingRight="@dimen/jw_padding"-->
-    <!--android:text="Ad Rules" />-->
+        <CheckBox
+            android:id="@+id/vmap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/jw_padding"
+            android:paddingRight="@dimen/jw_padding"
+            android:text="VMAP" />
 
-    <!--<CheckBox-->
-    <!--android:id="@+id/vmap"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:paddingLeft="@dimen/jw_padding"-->
-    <!--android:paddingRight="@dimen/jw_padding"-->
-    <!--android:text="VMAP" />-->
+    </LinearLayout>
 
-    <!--<CheckBox-->
-    <!--android:id="@+id/enable_offset"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:paddingLeft="@dimen/jw_padding"-->
-    <!--android:text="Offset" />-->
-
-    <!--</LinearLayout>-->
+    <RadioButton
+        android:id="@+id/enable_freewheel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="FreeWheel"
+        android:visibility="gone" />
 
     <EditText
         android:id="@+id/ad_tag"

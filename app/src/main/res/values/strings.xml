@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">JWPlayerDemo</string>
+    <string name="media_route_menu_title">Cast</string>
     <string name="title_jwplayer">JW Player</string>
     <string name="title_dashboard">JW Dashboard</string>
     <string name="title_settings">Settings</string>

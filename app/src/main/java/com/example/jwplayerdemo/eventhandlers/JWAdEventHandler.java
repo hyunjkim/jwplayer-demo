@@ -45,7 +45,7 @@ public class JWAdEventHandler implements
         AdvertisingEvents.OnAdStartedListener,
         AdvertisingEvents.OnAdTimeListener,
         AdvertisingEvents.OnBeforeCompleteListener,
-        AdvertisingEvents.OnBeforePlayListener{
+        AdvertisingEvents.OnBeforePlayListener {
 
     private TextView mOutput;
     private ScrollView mScroll;
@@ -81,8 +81,8 @@ public class JWAdEventHandler implements
         mScroll.scrollTo(0, mOutput.getBottom());
     }
 
-    private void print(String s){
-        Log.i("JWEVENT", " - (ADEVENT) - "+ s);
+    private void print(String s) {
+        Log.i("JWEVENT", " - (ADEVENT) - " + s);
     }
 
     @Override
@@ -103,7 +103,7 @@ public class JWAdEventHandler implements
         print(" " + "onAdSchedule " + adScheduleEvent.getClient());
         print(" " + "onAdSchedule " + adScheduleEvent.getTag());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            adScheduleEvent.getVmapAdBreaks().forEach(e->print("onAdSchedule-vmap ad break:" +e.toJson().toString()));
+            adScheduleEvent.getVmapAdBreaks().forEach(e -> print("onAdSchedule-vmap ad break:" + e.toJson().toString()));
         }
     }
 
@@ -123,7 +123,7 @@ public class JWAdEventHandler implements
 
     @Override
     public void onAdRequest(AdRequestEvent adRequestEvent) {
-        updateOutput(" " + "onAdRequest " + adRequestEvent.getTag()+ "\r\n "
+        updateOutput(" " + "onAdRequest " + adRequestEvent.getTag() + "\r\n "
                 + "onAdRequest client: " + adRequestEvent.getClient());
         print(" " + "onAdRequest tag: " + adRequestEvent.getTag());
         print(" " + "onAdRequest position: " + adRequestEvent.getAdPosition());
@@ -154,23 +154,25 @@ public class JWAdEventHandler implements
     public void onAdImpression(AdImpressionEvent adImpressionEvent) {
         updateOutput(" " + "onAdImpression: (\r\n" +
                 " Tag" + adImpressionEvent.getTag() + "\r\n" +
-                " Client: " + adImpressionEvent.getClient()+ "\r\n" +
-                " CreativeType: " + adImpressionEvent.getCreativeType()+ "\r\n" +
+                " Client: " + adImpressionEvent.getClient() + "\r\n" +
+                " CreativeType: " + adImpressionEvent.getCreativeType() + "\r\n" +
                 " Ad Position: " + adImpressionEvent.getAdPosition().name() + ")\r\n");
 
-        if(adImpressionEvent.getMediaFile()!=null ) print("onAdImpression - Media File: " + adImpressionEvent.getMediaFile().getFile()+ "\r\n");
-        if(adImpressionEvent.getVmapInfo() !=null ) print("onAdImpression - VmapInfo: " + adImpressionEvent.getVmapInfo().toJson()+ "\r\n");
+        if (adImpressionEvent.getMediaFile() != null)
+            print("onAdImpression - Media File: " + adImpressionEvent.getMediaFile().getFile() + "\r\n");
+        if (adImpressionEvent.getVmapInfo() != null)
+            print("onAdImpression - VmapInfo: " + adImpressionEvent.getVmapInfo().toJson() + "\r\n");
 
         print(" " + "onAdImpression: (\r\n" +
                 " Tag: " + adImpressionEvent.getTag() + "\r\n" +
-                " Universal Ad Id Value: " + adImpressionEvent.getUniversalAdIdValue()+ "\r\n" +
-                " Universal Ad Id Registry: " + adImpressionEvent.getUniversalAdIdRegistry()+ "\r\n" +
+                " Universal Ad Id Value: " + adImpressionEvent.getUniversalAdIdValue() + "\r\n" +
+                " Universal Ad Id Registry: " + adImpressionEvent.getUniversalAdIdRegistry() + "\r\n" +
                 " ClickThrough URL: " + adImpressionEvent.getClickThroughUrl() + "\r\n" +
                 " getMediaFileCompliance: " + Objects.requireNonNull(adImpressionEvent.getMediaFileCompliance()).toString() + "\r\n" +
                 " getNonComplianceReasons: " + Arrays.toString(adImpressionEvent.getNonComplianceReasons()) + "\r\n" +
-                " Vast Version: " + adImpressionEvent.getVastVersion()+ "\r\n" +
-                " Client: " + adImpressionEvent.getClient()+ "\r\n" +
-                " CreativeType: " + adImpressionEvent.getCreativeType()+ "\r\n" +
+                " Vast Version: " + adImpressionEvent.getVastVersion() + "\r\n" +
+                " Client: " + adImpressionEvent.getClient() + "\r\n" +
+                " CreativeType: " + adImpressionEvent.getCreativeType() + "\r\n" +
                 " Ad Title: " + adImpressionEvent.getAdTitle() + "\r\n" +
                 " Ad Categories: " + Arrays.toString(adImpressionEvent.getCategories()) + "\r\n" +
                 " Ad System: " + adImpressionEvent.getAdSystem() + "\r\n" +
@@ -202,12 +204,12 @@ public class JWAdEventHandler implements
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             adCompanionsEvent
                     .getCompanions()
-                    .forEach(e->{
-                        print("onAdCompanions click - " + e.getClick()+ "\r\n" +
-                                "onAdCompanions height - " + e.getHeight()+ "\r\n" +
-                                "onAdCompanions width - " + e.getWidth()+ "\r\n" +
-                                "onAdCompanions type - " + e.getType()+ "\r\n" +
-                                "onAdCompanions resource - " + e.getResource()+ "\n");
+                    .forEach(e -> {
+                        print("onAdCompanions click - " + e.getClick() + "\r\n" +
+                                "onAdCompanions height - " + e.getHeight() + "\r\n" +
+                                "onAdCompanions width - " + e.getWidth() + "\r\n" +
+                                "onAdCompanions type - " + e.getType() + "\r\n" +
+                                "onAdCompanions resource - " + e.getResource() + "\n");
                         printCreatives(e.getCreativeViews());
                     });
         }

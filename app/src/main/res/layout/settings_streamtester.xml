@@ -88,7 +88,6 @@
             android:visibility="visible" />
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -167,7 +166,6 @@
             android:visibility="visible" />
     </LinearLayout>
 
-
     <LinearLayout
         android:id="@+id/add_drm_values"
         android:layout_width="match_parent"
@@ -198,7 +196,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <EditText
             android:id="@+id/add_widevine_key"
@@ -225,31 +223,34 @@
             android:textSize="@dimen/jw_hint_textsize" />
     </LinearLayout>
 
-
     <LinearLayout
         android:id="@+id/add_custom_headers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <EditText
             android:id="@+id/add_header_key"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
+            android:hint="key"
             android:imeOptions="actionDone"
             android:maxLines="1"
-            android:text="Key" />
+            android:textSize="@dimen/jw_hint_textsize" />
 
         <EditText
             android:id="@+id/add_header_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
+            android:hint="value"
             android:imeOptions="actionDone"
             android:maxLines="1"
-            android:text="Value" />
+            android:textSize="@dimen/jw_hint_textsize" />
     </LinearLayout>
 
 </LinearLayout>
