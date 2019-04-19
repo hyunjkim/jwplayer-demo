@@ -48,7 +48,7 @@ dependencies {
     }
     // I cannot use this with the "com.android.support" at the same time
     // More info: https://material.io/develop/android/docs/getting-started/
-    implementation 'com.google.android.material:material:1.0.0'
+//    implementation 'com.google.android.material:material:1.0.0'
 
     implementation("com.android.support:recyclerview-v7:${supportLibVersion}") {
         force = true

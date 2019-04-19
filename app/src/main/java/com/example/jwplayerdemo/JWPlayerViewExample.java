@@ -31,6 +31,7 @@ import com.longtailvideo.jwplayer.media.playlists.PlaylistItem;
 import java.util.List;
 
 
+
 public class JWPlayerViewExample extends Fragment implements
         VideoPlayerEvents.OnFullscreenListener {
 
