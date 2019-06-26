@@ -1,11 +1,12 @@
 package com.example.jwplayerdemo.eventhandlers;
 
 import android.os.Build;
+import android.support.v4.widget.NestedScrollView;
 import android.util.Log;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.example.jwplayerdemo.jwutil.Logger;
+import com.example.jwplayerdemo.jwutil.JWLogger;
 import com.longtailvideo.jwplayer.JWPlayerView;
 import com.longtailvideo.jwplayer.events.AdBreakEndEvent;
 import com.longtailvideo.jwplayer.events.AdBreakStartEvent;
@@ -48,13 +49,11 @@ public class JWAdEventHandler implements
         AdvertisingEvents.OnBeforePlayListener {
 
     private TextView mOutput;
-    private ScrollView mScroll;
+    private NestedScrollView mScroll;
 
-
-    public JWAdEventHandler(JWPlayerView jwPlayerView, TextView output, ScrollView scrollview) {
+    public JWAdEventHandler(JWPlayerView jwPlayerView, TextView output, NestedScrollView scrollview) {
         mScroll = scrollview;
         mOutput = output;
-        mOutput.setText(Logger.printBuildVersion(jwPlayerView.getVersionCode()));
 
         // Subscribe to allEventHandler: Player events
         jwPlayerView.addOnAdBreakEndListener(this);
@@ -75,33 +74,39 @@ public class JWAdEventHandler implements
         jwPlayerView.addOnBeforePlayListener(this);
     }
 
+    /*
+    * Display Logs to UI
+    * */
     private void updateOutput(String output) {
-        String adOutput = Logger.updateOutput(output);
-        mOutput.setText(adOutput);
+        mOutput.setText(JWLogger.generateOutput(output));
         mScroll.scrollTo(0, mOutput.getBottom());
     }
 
+    /*
+     * Display Logs to logcat
+     * filter for: "JWEVENT"
+     * */
     private void print(String s) {
         Log.i("JWEVENT", " - (ADEVENT) - " + s);
     }
 
     @Override
     public void onAdBreakEnd(AdBreakEndEvent adBreakEndEvent) {
-        updateOutput(" " + "AdBreakEndEvent " + adBreakEndEvent.getAdPosition());
-        print(" " + "AdBreakEndEvent " + adBreakEndEvent.getAdPosition());
+        updateOutput("AdBreakEndEvent " + adBreakEndEvent.getAdPosition());
+        print("AdBreakEndEvent " + adBreakEndEvent.getAdPosition());
     }
 
     @Override
     public void onAdBreakStart(AdBreakStartEvent adBreakStartEvent) {
-        updateOutput(" " + "AdBreakStartEvent " + adBreakStartEvent.getAdPosition());
-        print(" " + "AdBreakStartEvent " + adBreakStartEvent.getAdPosition());
+        updateOutput("AdBreakStartEvent " + adBreakStartEvent.getAdPosition());
+        print("AdBreakStartEvent " + adBreakStartEvent.getAdPosition());
     }
 
     @Override
     public void onAdSchedule(AdScheduleEvent adScheduleEvent) {
-        updateOutput(" " + "onAdSchedule " + adScheduleEvent.getTag());
-        print(" " + "onAdSchedule " + adScheduleEvent.getClient());
-        print(" " + "onAdSchedule " + adScheduleEvent.getTag());
+        updateOutput("onAdSchedule " + adScheduleEvent.getTag());
+        print("onAdSchedule " + adScheduleEvent.getClient());
+        print("onAdSchedule " + adScheduleEvent.getTag());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             adScheduleEvent.getVmapAdBreaks().forEach(e -> print("onAdSchedule-vmap ad break:" + e.toJson().toString()));
         }
@@ -109,50 +114,50 @@ public class JWAdEventHandler implements
 
     @Override
     public void onAdError(AdErrorEvent adErrorEvent) {
-        updateOutput(" " + "adErrorEvent: " + adErrorEvent.getMessage());
-        print(" " + "adErrorEvent message: " + adErrorEvent.getMessage());
-        print(" " + "adErrorEvent tag: " + adErrorEvent.getTag());
+        updateOutput("adErrorEvent: " + adErrorEvent.getMessage());
+        print("adErrorEvent message: " + adErrorEvent.getMessage());
+        print("adErrorEvent tag: " + adErrorEvent.getTag());
     }
 
     @Override
     public void onAdStarted(AdStartedEvent adStartedEvent) {
 
-        updateOutput(" " + "adStartedEvent " + adStartedEvent.getCreativeType());
-        print(" " + "adStartedEvent " + adStartedEvent.getTag());
+        updateOutput("adStartedEvent " + adStartedEvent.getCreativeType());
+        print("adStartedEvent " + adStartedEvent.getTag());
     }
 
     @Override
     public void onAdRequest(AdRequestEvent adRequestEvent) {
-        updateOutput(" " + "onAdRequest " + adRequestEvent.getTag() + "\r\n "
+        updateOutput("onAdRequest " + adRequestEvent.getTag() + "\r\n "
                 + "onAdRequest client: " + adRequestEvent.getClient());
-        print(" " + "onAdRequest tag: " + adRequestEvent.getTag());
-        print(" " + "onAdRequest position: " + adRequestEvent.getAdPosition());
-        print(" " + "onAdRequest client: " + adRequestEvent.getClient());
-        print(" " + "onAdRequest offset: " + adRequestEvent.getOffset());
+        print("onAdRequest tag: " + adRequestEvent.getTag());
+        print("onAdRequest position: " + adRequestEvent.getAdPosition());
+        print("onAdRequest client: " + adRequestEvent.getClient());
+        print("onAdRequest offset: " + adRequestEvent.getOffset());
     }
 
 
     @Override
     public void onAdClick(AdClickEvent adClickEvent) {
-        updateOutput(" " + "onAdClick(\"" + adClickEvent.getTag() + ")\r\n");
-        print(" " + "onAdClick");
+        updateOutput("onAdClick(\"" + adClickEvent.getTag() + ")\r\n");
+        print("onAdClick");
     }
 
     @Override
     public void onAdComplete(AdCompleteEvent adCompleteEvent) {
-        updateOutput(" " + "onAdComplete(\"" + adCompleteEvent.getTag() + ")\r\n");
-        print(" " + "onAdComplete");
+        updateOutput("onAdComplete(\"" + adCompleteEvent.getTag() + ")\r\n");
+        print("onAdComplete");
     }
 
     @Override
     public void onAdSkipped(AdSkippedEvent adSkippedEvent) {
-        updateOutput(" " + "onAdSkipped(\"" + adSkippedEvent.getTag() + ")\r\n");
-        print(" " + "onAdSkipped");
+        updateOutput("onAdSkipped(\"" + adSkippedEvent.getTag() + ")\r\n");
+        print("onAdSkipped");
     }
 
     @Override
     public void onAdImpression(AdImpressionEvent adImpressionEvent) {
-        updateOutput(" " + "onAdImpression: (\r\n" +
+        updateOutput("onAdImpression: (\r\n" +
                 " Tag" + adImpressionEvent.getTag() + "\r\n" +
                 " Client: " + adImpressionEvent.getClient() + "\r\n" +
                 " CreativeType: " + adImpressionEvent.getCreativeType() + "\r\n" +
@@ -163,7 +168,7 @@ public class JWAdEventHandler implements
         if (adImpressionEvent.getVmapInfo() != null)
             print("onAdImpression - VmapInfo: " + adImpressionEvent.getVmapInfo().toJson() + "\r\n");
 
-        print(" " + "onAdImpression: (\r\n" +
+        print("onAdImpression: (\r\n" +
                 " Tag: " + adImpressionEvent.getTag() + "\r\n" +
                 " Universal Ad Id Value: " + adImpressionEvent.getUniversalAdIdValue() + "\r\n" +
                 " Universal Ad Id Registry: " + adImpressionEvent.getUniversalAdIdRegistry() + "\r\n" +
@@ -186,21 +191,21 @@ public class JWAdEventHandler implements
 
     @Override
     public void onAdPause(AdPauseEvent adPauseEvent) {
-        updateOutput(" " + "onAdPause(\"" + adPauseEvent.getTag() + "\", \"" + adPauseEvent.getOldState() + "\")\n");
-        print(" " + "onAdPause(\"" + adPauseEvent.getTag() + " " + adPauseEvent.getOldState());
+        updateOutput("onAdPause(\"" + adPauseEvent.getTag() + "\", \"" + adPauseEvent.getOldState() + "\")\n");
+        print("onAdPause(\"" + adPauseEvent.getTag() + " " + adPauseEvent.getOldState());
     }
 
     @Override
     public void onAdPlay(AdPlayEvent adPlayEvent) {
-        updateOutput(" " + "onAdPlay(" + adPlayEvent.getTag() + "\", \"" + adPlayEvent.getOldState() + ")\r\n");
-        print(" " + "onAdPlay(" + adPlayEvent.getTag() +
+        updateOutput("onAdPlay(" + adPlayEvent.getTag() + "\", \"" + adPlayEvent.getOldState() + ")\r\n");
+        print("onAdPlay(" + adPlayEvent.getTag() +
                 "\r\nold state: " + adPlayEvent.getOldState() +
                 "\r\ncreative type: " + adPlayEvent.getCreativeType() + ")\r\n");
     }
 
     @Override
     public void onAdCompanions(AdCompanionsEvent adCompanionsEvent) {
-        updateOutput(" " + "onAdCompanions tag:" + adCompanionsEvent.getTag());
+        updateOutput("onAdCompanions tag:" + adCompanionsEvent.getTag());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             adCompanionsEvent
                     .getCompanions()
@@ -223,14 +228,14 @@ public class JWAdEventHandler implements
 
     @Override
     public void onBeforeComplete(BeforeCompleteEvent beforeCompleteEvent) {
-        updateOutput(" " + "onBeforeComplete()");
-        print(" " + "onBeforeComplete(): " + beforeCompleteEvent);
+        updateOutput("onBeforeComplete()");
+        print("onBeforeComplete(): " + beforeCompleteEvent);
     }
 
     @Override
     public void onBeforePlay(BeforePlayEvent beforePlayEvent) {
-        updateOutput(" " + "onBeforePlay()");
-        print(" " + "onBeforePlay(): " + beforePlayEvent);
+        updateOutput("onBeforePlay()");
+        print("onBeforePlay(): " + beforePlayEvent);
     }
 
 }

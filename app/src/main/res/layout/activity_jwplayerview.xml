@@ -1,16 +1,18 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_jwplayerview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical">
 
+    <!--<include layout="@layout/dialog_licensekeycheck"/>-->
+
     <com.longtailvideo.jwplayer.JWPlayerView
         android:id="@+id/jwplayer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,11 +21,13 @@
         android:text="@string/title_jw_events"
         android:textColor="@color/black"
         android:textStyle="bold" />
-    <ScrollView
-        android:id="@+id/scroll"
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedscrollview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:fillViewport="true"
         android:scrollbars="vertical">
 
         <TextView
@@ -32,5 +36,5 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/jw_padding"
             android:textColor="@color/black" />
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

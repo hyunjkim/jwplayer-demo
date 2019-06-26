@@ -4,14 +4,13 @@
     android:layout_height="wrap_content"
     android:background="@drawable/jw_settings_border"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/jw_padding"
-    android:paddingRight="@dimen/jw_padding">
+    android:padding="@dimen/jw_padding">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/jw_padding"
-        android:text="@string/title_file_url"
+        android:text="@string/title_stream_url"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
@@ -30,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/jw_padding"
-        android:text="Additional Settings"
+        android:text="@string/configuration_settings"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
@@ -52,13 +51,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="Media ID"
+            android:hint="@string/_8_characters"
             android:imeOptions="actionNext"
             android:inputType="text"
             android:maxLength="8"
             android:maxLines="1"
-            android:textSize="@dimen/default_edittext_size"
-            android:visibility="visible" />
+            android:textSize="@dimen/default_edittext_size" />
     </LinearLayout>
 
     <LinearLayout
@@ -79,13 +77,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="pass Playlist ID"
+            android:hint="@string/_8_characters"
             android:imeOptions="actionNext"
             android:inputType="text"
             android:maxLength="8"
             android:maxLines="1"
-            android:textSize="@dimen/default_edittext_size"
-            android:visibility="visible" />
+            android:textSize="@dimen/default_edittext_size" />
     </LinearLayout>
 
     <LinearLayout
@@ -110,8 +107,7 @@
             android:imeOptions="actionNext"
             android:inputType="text"
             android:maxLines="1"
-            android:textSize="@dimen/default_edittext_size"
-            android:visibility="visible" />
+            android:textSize="@dimen/default_edittext_size" />
     </LinearLayout>
 
     <LinearLayout
@@ -132,12 +128,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="Set custom image or Use default"
+            android:hint="(URL, JPG, PNG, Assets, or GIF image)"
             android:imeOptions="actionNext"
             android:inputType="text"
             android:maxLines="1"
-            android:textSize="@dimen/default_edittext_size"
-            android:visibility="visible" />
+            android:textSize="@dimen/default_edittext_size" />
     </LinearLayout>
 
     <LinearLayout
@@ -162,18 +157,16 @@
             android:imeOptions="actionDone"
             android:inputType="text"
             android:maxLines="1"
-            android:textSize="@dimen/default_edittext_size"
-            android:visibility="visible" />
+            android:textSize="@dimen/default_edittext_size"/>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/add_drm_values"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:visibility="visible">
+        android:orientation="horizontal">
 
-        <RadioButton
+        <CheckBox
             android:id="@+id/check_widevinedrm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -196,11 +189,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:visibility="visible">
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/add_more_headers"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight=".20"
+            android:text="+" />
 
         <EditText
             android:id="@+id/add_widevine_key"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
@@ -212,14 +213,14 @@
 
         <EditText
             android:id="@+id/add_widevine_value"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:hint="custom value"
             android:imeOptions="actionDone"
             android:inputType="text"
-            android:maxLines="1"
+            android:maxLines="3"
             android:textSize="@dimen/jw_hint_textsize" />
     </LinearLayout>
 
@@ -228,7 +229,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <EditText
             android:id="@+id/add_header_key"

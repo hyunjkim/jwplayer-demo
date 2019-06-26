@@ -29,10 +29,6 @@ class JWUIVisibilitySettings {
         return checkedItems;
     }
 
-    static void setRadioBtn(List<CheckBox> checkBoxSettingsList, int radioBtn) {
-        mCheckBoxSettingsList = checkBoxSettingsList;
-    }
-
     /*
      * Show the optional section
      * TODO: pass each index and then set the view -OR- get an array and set them all at once

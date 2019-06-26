@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
+
         <activity
             android:name=".MainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
@@ -23,6 +24,10 @@
             </intent-filter>
         </activity>
 
+        <!--TODO Add this if you are using Fabrics Analytics -->
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="0ef7f5b00f51a4a374a9d2df1dde50e534d94e1c" />
 
         <!--TODO Add this if you are using Chromecast -->
         <meta-data

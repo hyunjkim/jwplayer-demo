@@ -26,14 +26,11 @@ import butterknife.OnClick;
 
 public class JWPlayerViewSettings extends Fragment {
 
-    @BindViews({R.id.check_mediaID, R.id.check_playlistID, R.id.check_title, R.id.check_image, R.id.check_description, R.id.check_headers})
+    @BindViews({R.id.check_mediaID, R.id.check_playlistID, R.id.check_title, R.id.check_image, R.id.check_description, R.id.check_headers,  R.id.check_widevinedrm})
     List<CheckBox> checkBoxSettingsList;
 
     @BindViews({R.id.add_mediaID, R.id.add_playlistID, R.id.add_title, R.id.add_image, R.id.add_description, R.id.add_stream_tag, R.id.add_header_key, R.id.add_header_value, R.id.add_widevine_key, R.id.add_widevine_value})
     List<EditText> editTextList;
-
-    @BindView(R.id.check_widevinedrm)
-    RadioButton checkWideVineDrm;
 
     @BindView(R.id.add_drm_values)
     LinearLayout addDrmValues;
@@ -43,10 +40,6 @@ public class JWPlayerViewSettings extends Fragment {
 
     @BindView(R.id.add_custom_headers)
     LinearLayout addCustomHeaders;
-
-
-//    private CheckBox checkBoxPlaylistID,checkBoxMediaID,checkBoxDRM,addHeaders,checkBoxTitle, checkBoxImage, checkBoxDescription, addCustomHeaders;
-//    private EditText mPlaylistID,mMediaID, setTitle,setImag`e,setDescription,addDrmValues,addStreamTag, addWideVineKey, addWideVineValue, addHeaderKey, addHeaderValue;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,18 +54,7 @@ public class JWPlayerViewSettings extends Fragment {
         return view;
     }
 
-    @OnClick({R.id.check_widevinedrm,})
-    void onRadioButtonSelected(View radioBtn) {
-
-        switch (radioBtn.getId()) {
-            case R.id.check_widevinedrm:
-                toast("Use Widevine DRM");
-                this.getView().findViewById(R.id.check_headers).setVisibility(View.VISIBLE);
-                break;
-        }
-    }
-
-    @OnClick({R.id.check_mediaID, R.id.check_playlistID, R.id.check_title, R.id.check_image, R.id.check_description, R.id.check_headers})
+    @OnClick({R.id.check_mediaID, R.id.check_playlistID, R.id.check_title, R.id.check_image, R.id.check_description, R.id.check_widevinedrm, R.id.check_headers,})
     void onCheckboxClicked(View checkBoxes) {
 
         int id = checkBoxes.getId();
@@ -92,6 +74,10 @@ public class JWPlayerViewSettings extends Fragment {
                 break;
             case R.id.check_description:
                 toast("Add Description");
+                break;
+            case R.id.check_widevinedrm:
+                toast("Use Widevine DRM");
+                checkBoxSettingsList.get(checkBoxSettingsList.indexOf(R.id.check_headers)).setVisibility(View.VISIBLE);
                 break;
             case R.id.check_headers:
                 toast(" Add Custom Headers");

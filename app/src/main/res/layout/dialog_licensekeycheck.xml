@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/jw_framelayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/red"
+    android:gravity="center_vertical"
+    android:padding="@dimen/jw_padding"
+    android:visibility="visible">
+
+    <LinearLayout
+        android:id="@+id/keycontainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:layout_weight=".3"
+            android:background="@drawable/ic_jw_logo" />
+
+        <EditText
+            android:id="@+id/enter_licensekey"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.4"
+            android:gravity="center"
+            android:hint="Enter your JW Player license key"
+            android:imeOptions="actionDone"
+            android:padding="@dimen/jw_padding"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/check_licensekey"
+            android:layout_width="0dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:layout_weight=".3"
+            android:background="@drawable/ic_baseline_autorenew_24px" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/keycontainer"
+        android:autoLink="web"
+        android:cursorVisible="true"
+        android:gravity="center_horizontal"
+        android:linksClickable="true"
+        android:text="Forgot Key?"
+        android:textColorLink="@color/blue"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+</RelativeLayout>
