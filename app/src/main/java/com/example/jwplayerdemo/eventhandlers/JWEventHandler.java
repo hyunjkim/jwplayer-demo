@@ -1,11 +1,11 @@
 package com.example.jwplayerdemo.eventhandlers;
 
-import android.support.v4.widget.NestedScrollView;
 import android.util.Log;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.example.jwplayerdemo.jwutil.JWLogger;
+import androidx.core.widget.NestedScrollView;
+
+import com.example.jwplayerdemo.jwutilities.JWLogger;
 import com.longtailvideo.jwplayer.JWPlayerView;
 import com.longtailvideo.jwplayer.events.AudioTrackChangedEvent;
 import com.longtailvideo.jwplayer.events.AudioTracksEvent;

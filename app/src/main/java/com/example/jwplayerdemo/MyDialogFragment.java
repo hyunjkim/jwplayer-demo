@@ -2,7 +2,6 @@ package com.example.jwplayerdemo;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.fragment.app.DialogFragment;
 
 import com.longtailvideo.jwplayer.JWPlayerView;
 
@@ -38,15 +39,15 @@ public class MyDialogFragment extends DialogFragment {
         // Inflate the layout to use as dialog or embedded fragment
         View view = inflater.inflate(R.layout.dialog_licensekeycheck, container, false);
 
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
 
         return view;
     }
 
     @OnClick(R.id.check_licensekey)
-    public void onSetLicenseKey(View view){
+    void onSetLicenseKey(View view) {
         Log.i("HYUNJOO", "GET LICENSE KEY!");
-        JWPlayerView.setLicenseKey(getContext(),retrievelicenseKey.getText().toString());
+        JWPlayerView.setLicenseKey(getContext(), retrievelicenseKey.getText().toString());
         licensekey = retrievelicenseKey.getText().toString();
         dismiss();
     }

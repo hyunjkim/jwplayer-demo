@@ -4,9 +4,6 @@ import android.app.ActionBar;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.NestedScrollView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,25 +12,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.jwplayerdemo.eventhandlers.JWAdEventHandler;
 import com.example.jwplayerdemo.eventhandlers.JWEventHandler;
 import com.example.jwplayerdemo.eventhandlers.KeepScreenOnHandler;
-import com.example.jwplayerdemo.jwutil.JWLogger;
-import com.example.jwplayerdemo.samples.SampleAds;
-import com.example.jwplayerdemo.samples.SamplePlaylist;
+import com.example.jwplayerdemo.jwsettings.JWViewModel;
+import com.example.jwplayerdemo.jwutilities.JWLogger;
 import com.longtailvideo.jwplayer.JWPlayerView;
 import com.longtailvideo.jwplayer.configuration.PlayerConfig;
-import com.longtailvideo.jwplayer.configuration.SkinConfig;
 import com.longtailvideo.jwplayer.events.FullscreenEvent;
 import com.longtailvideo.jwplayer.events.listeners.VideoPlayerEvents;
-import com.longtailvideo.jwplayer.media.ads.Advertising;
-import com.longtailvideo.jwplayer.media.playlists.PlaylistItem;
-
-import java.util.List;
 
 
 public class JWPlayerViewExample extends Fragment implements
@@ -45,12 +42,40 @@ public class JWPlayerViewExample extends Fragment implements
      */
     private JWPlayerView mPlayerView;
     private String licenseKey = "";
+    private PlayerConfig config;
+    private boolean updateSettings = false;
+
+    private JWViewModel jwViewModel;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Create a new View Model instance
+        jwViewModel = ViewModelProviders
+                .of(getMainActivity())
+                .get(JWViewModel.class);
+
+        // TODO: this updateSettings seems so slow, hence I am using onSettingsChanged() to receive the updateSettingsd settings and then setup at line 150
+
+//        jwViewModel.getPlayerConfig().observe(this, new Observer<PlayerConfig>() {
+//            @Override
+//            public void onChanged(PlayerConfig playerConfig) {
+//                Log.i("HYUNJOO", "JWPlayerViewExample - jwViewModel - onChanged()");
+//                config = playerConfig;
+//            }
+//        });
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Show the Cast and License Key button on the action bar
         setHasOptionsMenu(true);
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            updateSettings = bundle.getBoolean("updateSettings");
+        }
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_jwplayerview, container, false);
@@ -63,14 +88,14 @@ public class JWPlayerViewExample extends Fragment implements
             WebView.setWebContentsDebuggingEnabled(true);
         }
 
+        // Display JWPlayerVersion
+        JWLogger.generateOutput("Build version: " + mPlayerView.getVersionCode());
+
         // Handle hiding/showing of ActionBar
         mPlayerView.addOnFullscreenListener(this);
 
         // Keep the screen on during playback
         new KeepScreenOnHandler(mPlayerView, getActivity().getWindow());
-
-        // Display JWPlayerVersion
-        JWLogger.generateOutput("Build version: " + mPlayerView.getVersionCode());
 
         // Instantiate the JW Player event handler class
         new JWEventHandler(mPlayerView, outputTextView, scrollView);
@@ -82,6 +107,13 @@ public class JWPlayerViewExample extends Fragment implements
         setupJWPlayer();
 
         return view;
+    }
+
+    /*
+     * Get the associated Activity which is JWMainActivity
+     * */
+    private FragmentActivity getMainActivity() {
+        return getActivity();
     }
 
     /*
@@ -98,31 +130,17 @@ public class JWPlayerViewExample extends Fragment implements
      * */
     private void setupJWPlayer() {
 
-        List<PlaylistItem> playlistItemList = SamplePlaylist.createPlaylist();
-
-        // TODO: I want to get this string response from the USER
-        String ad = "vast";
-
-        // Get IMA or VAST Tag
-        Advertising advertising = ad.equals("vast") ? SampleAds.getVastAd() : SampleAds.getImaAd();
-
-        // SkinConifg - more info: https://developer.jwplayer.com/sdk/android/reference/com/longtailvideo/jwplayer/configuration/SkinConfig.Builder.html
-        SkinConfig skinConfig = new SkinConfig.Builder()
-                .url("https://myserver.com/css/mycustomcss.css")
-                .name("mycustomcss")
-                .build();
-
-        // More info: https://developer.jwplayer.com/sdk/android/reference/com/longtailvideo/jwplayer/configuration/PlayerConfig.Builder.html
-        PlayerConfig config = new PlayerConfig.Builder()
-                .playlist(playlistItemList)
-                .autostart(true)
-                .preload(true)
-                .mute(true)
-                .allowCrossProtocolRedirects(true)
-                .advertising(advertising)
-                .skinConfig(skinConfig)
-                .build();
-
+        if (updateSettings) {
+            config = jwViewModel.getPlayerConfig().getValue();
+        }
+        if (config == null) {
+            config = new PlayerConfig.Builder()
+                    .file("https://content.jwplatform.com/videos/8TbJTFy5-cIp6U8lV.mp4")
+                    .autostart(true)
+                    .preload(true)
+                    .allowCrossProtocolRedirects(true)
+                    .build();
+        }
         mPlayerView.setup(config);
     }
 
@@ -160,6 +178,7 @@ public class JWPlayerViewExample extends Fragment implements
     public void onStop() {
         super.onStop();
         mPlayerView.onStop();
+        JWLogger.reset();
     }
 
     @Override
@@ -179,6 +198,7 @@ public class JWPlayerViewExample extends Fragment implements
         }
         return true;
     }
+
 
     /**
      * Handles JW Player going to and returning from fullscreen by hiding the ActionBar
@@ -219,7 +239,7 @@ public class JWPlayerViewExample extends Fragment implements
                 MyDialogFragment dialogFragment = new MyDialogFragment();
                 if (getFragmentManager() != null) {
                     dialogFragment.show(getFragmentManager(), "");
-//        JWPlayerView.setLicenseKey(getContext(),dialogFragment.getLicensekey());
+                    JWPlayerView.setLicenseKey(getContext(), dialogFragment.getLicensekey());
                 }
                 return true;
         }

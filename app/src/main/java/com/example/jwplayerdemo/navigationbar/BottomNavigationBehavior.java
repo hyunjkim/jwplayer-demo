@@ -1,11 +1,12 @@
-package com.example.jwplayerdemo.behavior;
+package com.example.jwplayerdemo.navigationbar;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.view.ViewCompat;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;

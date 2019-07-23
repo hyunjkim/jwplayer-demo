@@ -22,7 +22,7 @@
         android:textColor="@color/black"
         android:textStyle="bold" />
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedscrollview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -36,5 +36,5 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/jw_padding"
             android:textColor="@color/black" />
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

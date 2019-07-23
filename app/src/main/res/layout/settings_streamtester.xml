@@ -161,7 +161,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/add_drm_values"
+        android:id="@+id/add_widevine"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
@@ -195,29 +195,28 @@
             android:id="@+id/add_more_headers"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_weight=".20"
             android:text="+" />
 
         <EditText
-            android:id="@+id/add_widevine_key"
+            android:id="@+id/add_header_key"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:hint="custom name"
+            android:hint="key"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:maxLines="1"
             android:textSize="@dimen/jw_hint_textsize" />
 
         <EditText
-            android:id="@+id/add_widevine_value"
+            android:id="@+id/add_header_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:hint="custom value"
+            android:hint="value"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:maxLines="3"
@@ -225,33 +224,19 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/add_custom_headers"
+        android:id="@+id/add_http_headers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:visibility="gone">
+        android:visibility="visible">
 
-        <EditText
-            android:id="@+id/add_header_key"
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/check_http_headers"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="key"
-            android:imeOptions="actionDone"
-            android:maxLines="1"
-            android:textSize="@dimen/jw_hint_textsize" />
-
-        <EditText
-            android:id="@+id/add_header_value"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="value"
-            android:imeOptions="actionDone"
-            android:maxLines="1"
-            android:textSize="@dimen/jw_hint_textsize" />
+            android:paddingRight="@dimen/jw_padding"
+            android:text="HTTP Headers"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>

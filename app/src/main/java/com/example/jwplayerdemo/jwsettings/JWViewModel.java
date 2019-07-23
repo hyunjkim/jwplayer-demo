@@ -1,0 +1,131 @@
+package com.example.jwplayerdemo.jwsettings;
+
+import android.util.Log;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+
+import com.example.jwplayerdemo.JWPlayerViewExample;
+import com.example.jwplayerdemo.JWMainActivity;
+import com.example.jwplayerdemo.jwutilities.JWLogger;
+import com.longtailvideo.jwplayer.configuration.PlayerConfig;
+
+/**
+ * JWPlayer Config Settings Storage
+ *
+ * <p>
+ * Sometimes you might need an Application context (as opposed to an Activity context) for use with things like system services.
+ * Storing an Application context in a ViewModel is okay because an Application context is tied to the Application lifecycle.
+ * This is different from an Activity context, which is tied to the Activity lifecycle.
+ * In fact, if you need an Application context, you should extend AndroidViewModel which is simply
+ * a ViewModel that includes an Application reference. - I did not do this step
+ * <p>
+ * The first time the ViewModelProviders.of method is called by JWMainActivity, it creates a new ViewModel instance.
+ * When this method is called again, which happens whenever onCreate is called,
+ * it will return the pre-existing ViewModel associated with the specific Court-Counter JWMainActivity.
+ * This is what preserves the data.
+ * <p>
+ *
+ * @see #ViewModel
+ * Credits to: {@link - https://medium.com/androiddevelopers/viewmodels-a-simple-example-ed5ac416317e}
+ */
+
+public class JWViewModel extends ViewModel {
+
+    private MutableLiveData<PlayerConfig> selected = new MutableLiveData<>();
+    private String file = "https://content.jwplatform.com/videos/8TbJTFy5-cIp6U8lV.mp4";
+    private String json;
+    private PlayerConfig config;
+
+    /**
+     * Made public so other packages can access this, this is how all the Fragments have access to this data store
+     *
+     * @see JWMainActivity
+     * @see JWPlayerViewExample
+     * @see JWPlayerViewSettings
+     */
+    public LiveData<PlayerConfig> getPlayerConfig() {
+        Log.i("HYUNJOO", "JWViewModel - getPlayerConfig() " + file);
+        return selected;
+    }
+
+    /**
+     * When user clicks "SAVE"
+     *
+     * @see JWPlayerViewSettings#onOptionsItemSelected(android.view.MenuItem)
+     */
+    void setCurrentConfig() {
+        Log.i("HYUNJOO", "JWViewModel - setupConfig() " + file);
+        selected.setValue(setupConfig());
+    }
+
+    /*
+     * Setup JW Config
+     * */
+    private PlayerConfig setupConfig() {
+        Log.i("HYUNJOO", "JWViewModel - getConfig(): " + file);
+
+        return config = new PlayerConfig.Builder()
+//                .advertising()
+//                .allowCrossProtocolRedirects()
+//                .autostart()
+//                .captionsConfig()
+//                .controls()
+//                .displayDescription()
+//                .displayTitle()
+                .file(file)
+//                .image()
+//                .logoConfig()
+//                .mute()
+//                .nextUpDisplay()
+//                .nextUpOffset()
+//                .playbackRates()
+//                .playlist()
+//                .preload()
+//                .relatedConfig()
+//                .repeat()
+//                .sharingConfig()
+//                .skinConfig()
+//                .stretching()
+//                .useTextureView()
+                .build();
+    }
+
+    void setFile(String file) {
+        JWLogger.log("JWViewModel - Add stream tag: " + file);
+
+        if (file.startsWith("{")) {
+            JWLogger.log("JWViewModel - Add JSON tag: " + file);
+            this.json = file;
+        } else {
+            this.file = file;
+        }
+    }
+
+    void setMediaId(String mediaid) {
+        JWLogger.log("JWViewModel - Add Media Id: " + mediaid);
+    }
+
+    void setPlaylistId(String playlistid) {
+        JWLogger.log("JWViewModel - Add Playlist Id: " + playlistid);
+    }
+
+    void setTitle(String title) {
+        JWLogger.log("JWViewModel - Add Title: " + title);
+    }
+
+    void setImage(String image) {
+        JWLogger.log("JWViewModel - Add Image: " + image);
+    }
+
+    void setDescription(String description) {
+        JWLogger.log("JWViewModel - Add Description: " + description);
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+    }
+
+}

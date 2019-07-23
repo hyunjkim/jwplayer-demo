@@ -1,4 +1,4 @@
-package com.example.jwplayerdemo.jwutil;
+package com.example.jwplayerdemo.jwutilities;
 
 import android.util.Log;
 
@@ -9,9 +9,8 @@ import java.util.Locale;
 
 public class JWLogger {
 
+    private static final String TAG = "HYUNJOO";
     private static StringBuilder outputStringBuilder;
-
-    ;
     private static DateFormat dateFormat = new SimpleDateFormat("KK:mm:ss.SSS", Locale.US);
 
     /*
@@ -24,5 +23,20 @@ public class JWLogger {
         outputStringBuilder.append(dateFormat.format(new Date())).append(" ").append(output).append("\r\n");
 
         return outputStringBuilder.toString();
+    }
+
+    /*
+     * Reset the StringBuilder
+     * */
+    public static void reset() {
+        outputStringBuilder = null;
+    }
+
+    /*
+     * Display this log
+     * */
+    public static void log(String msg) {
+        Log.i(TAG, msg);
+
     }
 }
