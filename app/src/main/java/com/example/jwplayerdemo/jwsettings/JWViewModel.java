@@ -171,23 +171,23 @@ public class JWViewModel extends ViewModel {
     }
 
 
-    boolean mediaIdChecked() {
+    boolean isMediaIdChecked() {
         return checkedMediaId;
     }
 
-    boolean playlistIdChecked() {
+    boolean isPlaylistIdChecked() {
         return checkedPlaylistId;
     }
 
-    boolean titleChecked() {
+    boolean isTitleChecked() {
         return checkedTitle;
     }
 
-    boolean descriptionChecked() {
+    boolean isDescriptionChecked() {
         return checkedDescription;
     }
 
-    boolean imageChecked() {
+    boolean isImageChecked() {
         return checkedImage;
     }
 

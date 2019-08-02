@@ -55,15 +55,15 @@ public class OnCheckBoxChangedListener implements CheckBox.OnCheckedChangeListen
     boolean show(CheckBox each) {
         switch (each.getId()) {
             case R.id.check_mediaID:
-                return model.mediaIdChecked();
+                return model.isMediaIdChecked();
             case R.id.check_playlistID:
-                return model.playlistIdChecked();
+                return model.isPlaylistIdChecked();
             case R.id.check_title:
-                return model.titleChecked();
+                return model.isTitleChecked();
             case R.id.check_image:
-                return model.imageChecked();
+                return model.isImageChecked();
             case R.id.check_description:
-                return model.descriptionChecked();
+                return model.isDescriptionChecked();
             case R.id.check_widevinedrm:
                 return false;
             case R.id.check_headers:
