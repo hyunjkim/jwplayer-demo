@@ -109,7 +109,7 @@ public class JWMainActivity extends AppCompatActivity implements
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (mCurrFragmentView != null && mCurrFragmentView.getClass().getName().equalsIgnoreCase("com.example.jwplayerdemo.JWPlayerViewExample")) {
+            if(mCurrFragmentView instanceof JWPlayerViewExample) {
                 return ((JWPlayerViewExample) mCurrFragmentView).onMyKeyDown(keyCode, event);
             }
         }
