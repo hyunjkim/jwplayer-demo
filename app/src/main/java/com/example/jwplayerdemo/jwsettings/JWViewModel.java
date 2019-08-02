@@ -37,7 +37,8 @@ import java.util.List;
 
 public class JWViewModel extends ViewModel {
 
-    private final String DEFAULT_URL = "https://content.jwplatform.com/videos/8TbJTFy5-cIp6U8lV.mp4";
+    // static will only allocate memory for it once across all instances so it's a little more resource efficient
+    private final static String DEFAULT_URL = "https://content.jwplatform.com/videos/8TbJTFy5-cIp6U8lV.mp4";
 
     private MutableLiveData<PlayerConfig> selected = new MutableLiveData<>();
     private PlaylistItem playlistItem = new PlaylistItem(DEFAULT_URL);
