@@ -86,22 +86,20 @@ public class JWViewModel extends ViewModel {
      * */
     private PlayerConfig setupConfig() {
         Log.i("HYUNJOO", "JWViewModel - getConfig() ");
-
-        List<PlaylistItem> playlistItemList = new ArrayList<PlaylistItem>() {{
-            add(playlistItem);
-        }};
-
-        config.setPlaylist(playlistItemList);
-
+        if(config == null) {
+          config = getDefaultConfig();
+        }
         return config;
     }
 
     void setFile(String file) {
-        JWLogger.log("JWViewModel - Add stream tag: " + file);
+        // If the file starts with "{" then this is a json
         if (file.startsWith("{")) {
-            JWLogger.log("JWViewModel - Add JSON tag: " + file);
-            config.setPlaylist(PlaylistItem.listFromJson(file));
-        } else config.setFile(file);
+            List<PlaylistItem> playlist = PlaylistItem.listFromJson(file);
+            config.setPlaylist(playlist);
+        } else {
+            config.setFile(file); // otherwise, just pass this as a file
+        }
     }
 
     void setMediaId(String mediaid) {
