@@ -36,6 +36,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_autostart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/jw_padding"
+            android:text="Autostart "
+            android:textStyle="bold" />
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_repeat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/jw_padding"
+            android:text="Repeat "
+            android:textStyle="bold" />
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_mute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/jw_padding"
+            android:text="Mute "
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
         <CheckBox
@@ -157,7 +187,7 @@
             android:imeOptions="actionDone"
             android:inputType="text"
             android:maxLines="1"
-            android:textSize="@dimen/default_edittext_size"/>
+            android:textSize="@dimen/default_edittext_size" />
     </LinearLayout>
 
     <LinearLayout

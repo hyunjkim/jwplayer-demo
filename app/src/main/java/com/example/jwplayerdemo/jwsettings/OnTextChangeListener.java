@@ -9,11 +9,11 @@ import com.example.jwplayerdemo.R;
 public class OnTextChangeListener implements TextWatcher {
 
     private int viewId;
-    private JWViewModel configStore;
+    private JWViewModel model;
 
-    OnTextChangeListener(EditText editText, JWViewModel configStore) {
+    OnTextChangeListener(EditText editText, JWViewModel model) {
         this.viewId = editText.getId();
-        this.configStore = configStore;
+        this.model = model;
     }
 
     @Override
@@ -30,21 +30,21 @@ public class OnTextChangeListener implements TextWatcher {
         String text = s.toString();
         switch (viewId) {
             case R.id.add_stream_tag:
-                configStore.setFile(text);
+                model.setFile(text);
                 break;
             case R.id.add_mediaID:
-                configStore.setMediaId(text);
+                model.setMediaId(text);
             case R.id.add_playlistID:
-                configStore.setPlaylistId(text);
+                model.setPlaylistId(text);
                 break;
             case R.id.add_title:
-                configStore.setTitle(text);
+                model.setTitle(text);
                 break;
             case R.id.add_image:
-                configStore.setImage(text);
+                model.setImage(text);
                 break;
             case R.id.add_description:
-                configStore.setDescription(text);
+                model.setDescription(text);
                 break;
             case R.id.add_header_key:
                 break;

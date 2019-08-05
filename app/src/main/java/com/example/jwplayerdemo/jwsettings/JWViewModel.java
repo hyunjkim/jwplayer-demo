@@ -6,10 +6,14 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.jwplayerdemo.JWPlayerViewExample;
 import com.example.jwplayerdemo.JWMainActivity;
+import com.example.jwplayerdemo.JWPlayerViewExample;
 import com.example.jwplayerdemo.jwutilities.JWLogger;
 import com.longtailvideo.jwplayer.configuration.PlayerConfig;
+import com.longtailvideo.jwplayer.media.playlists.PlaylistItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * JWPlayer Config Settings Storage
@@ -33,10 +37,26 @@ import com.longtailvideo.jwplayer.configuration.PlayerConfig;
 
 public class JWViewModel extends ViewModel {
 
+    // static will only allocate memory for it once across all instances so it's a little more resource efficient
+    private final static String DEFAULT_URL = "https://content.jwplatform.com/videos/8TbJTFy5-cIp6U8lV.mp4";
+
     private MutableLiveData<PlayerConfig> selected = new MutableLiveData<>();
-    private String file = "https://content.jwplatform.com/videos/8TbJTFy5-cIp6U8lV.mp4";
-    private String json;
-    private PlayerConfig config;
+    private PlaylistItem playlistItem = new PlaylistItem(DEFAULT_URL);
+    private PlayerConfig config = new PlayerConfig.Builder().file(DEFAULT_URL).build();
+    private boolean checkedTitle = false,
+            checkedDescription = false,
+            checkedImage = false,
+            checkedMediaId = false,
+            checkedPlaylistId = false,
+            autostart = false,
+            repeat = false,
+            mute = false;
+    private boolean isSettingsUpdated = false;
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+    }
 
     /**
      * Made public so other packages can access this, this is how all the Fragments have access to this data store
@@ -46,7 +66,7 @@ public class JWViewModel extends ViewModel {
      * @see JWPlayerViewSettings
      */
     public LiveData<PlayerConfig> getPlayerConfig() {
-        Log.i("HYUNJOO", "JWViewModel - getPlayerConfig() " + file);
+        Log.i("HYUNJOO", "JWViewModel - getPlayerConfig() ");
         return selected;
     }
 
@@ -56,7 +76,8 @@ public class JWViewModel extends ViewModel {
      * @see JWPlayerViewSettings#onOptionsItemSelected(android.view.MenuItem)
      */
     void setCurrentConfig() {
-        Log.i("HYUNJOO", "JWViewModel - setupConfig() " + file);
+        Log.i("HYUNJOO", "JWViewModel - setupConfig() ");
+        isSettingsUpdated = true;
         selected.setValue(setupConfig());
     }
 
@@ -64,68 +85,131 @@ public class JWViewModel extends ViewModel {
      * Setup JW Config
      * */
     private PlayerConfig setupConfig() {
-        Log.i("HYUNJOO", "JWViewModel - getConfig(): " + file);
+        Log.i("HYUNJOO", "JWViewModel - getConfig() ");
 
-        return config = new PlayerConfig.Builder()
-//                .advertising()
-//                .allowCrossProtocolRedirects()
-//                .autostart()
-//                .captionsConfig()
-//                .controls()
-//                .displayDescription()
-//                .displayTitle()
-                .file(file)
-//                .image()
-//                .logoConfig()
-//                .mute()
-//                .nextUpDisplay()
-//                .nextUpOffset()
-//                .playbackRates()
-//                .playlist()
-//                .preload()
-//                .relatedConfig()
-//                .repeat()
-//                .sharingConfig()
-//                .skinConfig()
-//                .stretching()
-//                .useTextureView()
-                .build();
+        List<PlaylistItem> playlistItemList = new ArrayList<PlaylistItem>() {{
+            add(playlistItem);
+        }};
+
+        config.setPlaylist(playlistItemList);
+
+        return config;
     }
 
     void setFile(String file) {
         JWLogger.log("JWViewModel - Add stream tag: " + file);
-
         if (file.startsWith("{")) {
             JWLogger.log("JWViewModel - Add JSON tag: " + file);
-            this.json = file;
-        } else {
-            this.file = file;
-        }
+            config.setPlaylist(PlaylistItem.listFromJson(file));
+        } else config.setFile(file);
     }
 
     void setMediaId(String mediaid) {
-        JWLogger.log("JWViewModel - Add Media Id: " + mediaid);
     }
 
     void setPlaylistId(String playlistid) {
-        JWLogger.log("JWViewModel - Add Playlist Id: " + playlistid);
     }
 
     void setTitle(String title) {
         JWLogger.log("JWViewModel - Add Title: " + title);
-    }
-
-    void setImage(String image) {
-        JWLogger.log("JWViewModel - Add Image: " + image);
+        playlistItem.setTitle(title);
+        config.setDisplayTitle(checkedTitle);
     }
 
     void setDescription(String description) {
         JWLogger.log("JWViewModel - Add Description: " + description);
+        playlistItem.setDescription(description);
+        config.setDisplayDescription(checkedDescription);
     }
 
-    @Override
-    protected void onCleared() {
-        super.onCleared();
+    void setImage(String image) {
+        JWLogger.log("JWViewModel - Add Image: " + image);
+        if (checkedImage) {
+            playlistItem.setImage(image);
+        }
     }
 
+    void showTitle(boolean isChecked) {
+        checkedTitle = isChecked;
+        if (!checkedTitle) playlistItem.setTitle("");
+    }{
+
+    }
+
+    void showDescription(boolean isChecked) {
+        checkedDescription = isChecked;
+        if (!checkedDescription) {
+            playlistItem.setDescription("");
+        }
+    }
+
+    void showImage(boolean isChecked) {
+        checkedImage = isChecked;
+        if (!checkedImage) {
+            config.setImage("");
+        }
+    }
+
+    boolean getAutoStart() {
+        JWLogger.log("Autostart: " + autostart);
+        return autostart;
+    }
+
+    void setAutoStart(boolean isChecked) {
+        autostart = isChecked;
+        config.setAutostart(isChecked);
+    }
+
+    boolean getRepeat() {
+        JWLogger.log("Repeat mode " + repeat);
+        return repeat;
+    }
+
+    void setRepeat(boolean isChecked) {
+        repeat = isChecked;
+        config.setRepeat(isChecked);
+    }
+
+    boolean getMute() {
+        JWLogger.log("Mute " + mute);
+        return mute;
+    }
+
+    void setMute(boolean isChecked) {
+        mute = isChecked;
+        config.setMute(isChecked);
+    }
+
+    boolean isMediaIdChecked() {
+        return checkedMediaId;
+    }
+
+    boolean isPlaylistIdChecked() {
+        return checkedPlaylistId;
+    }
+
+    boolean isTitleChecked() {
+        return checkedTitle;
+    }
+
+    boolean isDescriptionChecked() {
+        return checkedDescription;
+    }
+
+    boolean isImageChecked() {
+        return checkedImage;
+    }
+
+    public boolean didUserClickSave() {
+        return isSettingsUpdated;
+    }
+
+    public PlayerConfig getDefaultConfig() {
+        return new PlayerConfig.Builder()
+                .file("https://content.jwplatform.com/videos/8TbJTFy5-cIp6U8lV.mp4")
+                .autostart(true)
+                .preload(true)
+                .allowCrossProtocolRedirects(true)
+                .build();
+    }
 }
