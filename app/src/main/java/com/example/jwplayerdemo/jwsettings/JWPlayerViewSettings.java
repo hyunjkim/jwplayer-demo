@@ -124,7 +124,7 @@ public class JWPlayerViewSettings extends Fragment {
      * Initialize Switch listener
      * // TODO: I'm accessing the data from the JWViewModel, but I have to see if that is best pracitce Or I have to use sharedPreferences
      * {@link - https://stackoverflow.com/questions/25945742/change-android-switch-state}
-     * */
+     */
     private void switchListeners() {
         for (SwitchCompat each : switches) {
             OnSwitchListener switchListener = OnSwitchListener.newInstance(each, jwViewModel);
@@ -170,13 +170,11 @@ public class JWPlayerViewSettings extends Fragment {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // handle item selection
-        switch (item.getItemId()) {
-            case R.id.menu_save:
-                Log.i("HYUNJOO", "JW Settings - SAVED ");
-                jwViewModel.setCurrentConfig(); // Setting up the PlayerConfig in JWViewModel
-                callback.onSettingsChanged(); // Notify JWMainActivity that the settings were updated
-                return true;
+        if (item.getItemId() == R.id.menu_save) {
+            Log.i("HYUNJOO", "JW Settings - SAVED ");
+            jwViewModel.setCurrentConfig(); // Setting up the PlayerConfig in JWViewModel and lettings JWViewModel know the config is up-to-date
+            callback.onSettingsChanged(); // Notify JWMainActivity that the settings were updated
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -185,7 +183,6 @@ public class JWPlayerViewSettings extends Fragment {
      * Communicate with other fragments
      * The Fragment captures the interface implementation during its onAttach() lifecycle method
      * and can then call the Interface methods in order to communicate with the Activity.
-     * <p>
      * {@link - https://developer.android.com/training/basics/fragments/communicating#java}
      */
     public void addOnSettingsListener(OnSettingsListener callback) {
@@ -193,7 +190,10 @@ public class JWPlayerViewSettings extends Fragment {
     }
 
     /**
-     * This interface can be implemented by the Activity, parent Fragment, or a separate test implementation.
+     * This interface can be implemented by
+     * the Activity,
+     * parent Fragment,
+     * or a separate test implementation.
      */
     public interface OnSettingsListener {
         void onSettingsChanged();

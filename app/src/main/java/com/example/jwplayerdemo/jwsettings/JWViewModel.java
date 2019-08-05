@@ -51,6 +51,7 @@ public class JWViewModel extends ViewModel {
             autostart = false,
             repeat = false,
             mute = false;
+    private boolean isSettingsUpdated = false;
 
     @Override
     protected void onCleared() {
@@ -76,6 +77,7 @@ public class JWViewModel extends ViewModel {
      */
     void setCurrentConfig() {
         Log.i("HYUNJOO", "JWViewModel - setupConfig() ");
+        isSettingsUpdated = true;
         selected.setValue(setupConfig());
     }
 
@@ -85,7 +87,7 @@ public class JWViewModel extends ViewModel {
     private PlayerConfig setupConfig() {
         Log.i("HYUNJOO", "JWViewModel - getConfig() ");
 
-        List<PlaylistItem> playlistItemList = new ArrayList<PlaylistItem>(){{
+        List<PlaylistItem> playlistItemList = new ArrayList<PlaylistItem>() {{
             add(playlistItem);
         }};
 
@@ -127,17 +129,17 @@ public class JWViewModel extends ViewModel {
 
     void showTitle(boolean isChecked) {
         checkedTitle = isChecked;
-        if(!checkedTitle) playlistItem.setTitle("");
+        if (!checkedTitle) playlistItem.setTitle("");
     }
 
     void showDescription(boolean isChecked) {
         checkedDescription = isChecked;
-        if(!checkedDescription) playlistItem.setDescription("");
+        if (!checkedDescription) playlistItem.setDescription("");
     }
 
     void showImage(boolean isChecked) {
         checkedImage = isChecked;
-        if(!checkedImage) config.setImage("");
+        if (!checkedImage) config.setImage("");
     }
 
     boolean getAutoStart() {
@@ -170,7 +172,6 @@ public class JWViewModel extends ViewModel {
         config.setMute(isChecked);
     }
 
-
     boolean isMediaIdChecked() {
         return checkedMediaId;
     }
@@ -191,4 +192,16 @@ public class JWViewModel extends ViewModel {
         return checkedImage;
     }
 
+    public boolean didUserClickSave() {
+        return isSettingsUpdated;
+    }
+
+    public PlayerConfig getDefaultConfig() {
+        return new PlayerConfig.Builder()
+                .file("https://content.jwplatform.com/videos/8TbJTFy5-cIp6U8lV.mp4")
+                .autostart(true)
+                .preload(true)
+                .allowCrossProtocolRedirects(true)
+                .build();
+    }
 }
