@@ -124,22 +124,30 @@ public class JWViewModel extends ViewModel {
 
     void setImage(String image) {
         JWLogger.log("JWViewModel - Add Image: " + image);
-        if (checkedImage) playlistItem.setImage(image);
+        if (checkedImage) {
+            playlistItem.setImage(image);
+        }
     }
 
     void showTitle(boolean isChecked) {
         checkedTitle = isChecked;
         if (!checkedTitle) playlistItem.setTitle("");
+    }{
+
     }
 
     void showDescription(boolean isChecked) {
         checkedDescription = isChecked;
-        if (!checkedDescription) playlistItem.setDescription("");
+        if (!checkedDescription) {
+            playlistItem.setDescription("");
+        }
     }
 
     void showImage(boolean isChecked) {
         checkedImage = isChecked;
-        if (!checkedImage) config.setImage("");
+        if (!checkedImage) {
+            config.setImage("");
+        }
     }
 
     boolean getAutoStart() {
