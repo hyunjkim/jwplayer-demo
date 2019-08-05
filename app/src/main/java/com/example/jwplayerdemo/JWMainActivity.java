@@ -11,8 +11,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.jwplayerdemo.jwsettings.JWViewModel;
 import com.example.jwplayerdemo.jwsettings.JWPlayerViewSettings;
+import com.example.jwplayerdemo.jwsettings.JWViewModel;
+import com.example.jwplayerdemo.jwsettings.OnSwitchListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import butterknife.BindView;
@@ -41,7 +42,6 @@ public class JWMainActivity extends AppCompatActivity implements
     BottomNavigationView navigation;
 
     private Fragment mCurrFragmentView;
-    private Bundle bundle;
 
     /**
      * {@link ViewModelProviders} - Preserve Data
@@ -80,7 +80,6 @@ public class JWMainActivity extends AppCompatActivity implements
                 case R.id.navigation_jwplayer:
                     Log.i("HYUNJOO", "JWMainActivity - navigation bar - jwplayerview");
                     mCurrFragmentView = new JWPlayerViewExample();
-                    mCurrFragmentView.setArguments(bundle);
                     break;
                 case R.id.navigation_settings:
                     Log.i("HYUNJOO", "JWMainActivity - navigation bar - settings");
@@ -139,10 +138,35 @@ public class JWMainActivity extends AppCompatActivity implements
     @Override
     public void onSettingsChanged() {
         Log.i("HYUNJOO", "JWMainActivity - onSettingsChanged() ");
-
-        // TODO:  Pass "true" to jwplayerview as a bundle to get the updated config settings from the JWconfigstore
-        bundle = new Bundle();
-        bundle.putBoolean("updateSettings", true);
         navigation.setSelectedItemId(R.id.navigation_jwplayer);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        // Let JW Player know that the app has returned from the background
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        // Let JW Player know that the app is going to the background
+        super.onPause();
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        OnSwitchListener.removeInstance();
+    }
+
+    @Override
+    protected void onDestroy() {
+        // Let JW Player know that the app is being destroyed
+        super.onDestroy();
+    }
+
 }

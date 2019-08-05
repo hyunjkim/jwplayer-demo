@@ -43,7 +43,6 @@ public class JWPlayerViewExample extends Fragment implements
     private JWPlayerView mPlayerView;
     private String licenseKey = "";
     private PlayerConfig config;
-    private boolean updateSettings = false;
 
     private JWViewModel jwViewModel;
 
@@ -54,16 +53,6 @@ public class JWPlayerViewExample extends Fragment implements
         jwViewModel = ViewModelProviders
                 .of(getMainActivity())
                 .get(JWViewModel.class);
-
-        // TODO: this updateSettings seems so slow, hence I am using onSettingsChanged() to receive the updateSettingsd settings and then setup at line 150
-
-//        jwViewModel.getPlayerConfig().observe(this, new Observer<PlayerConfig>() {
-//            @Override
-//            public void onChanged(PlayerConfig playerConfig) {
-//                Log.i("HYUNJOO", "JWPlayerViewExample - jwViewModel - onChanged()");
-//                config = playerConfig;
-//            }
-//        });
     }
 
     @Override
@@ -71,11 +60,6 @@ public class JWPlayerViewExample extends Fragment implements
 
         // Show the Cast and License Key button on the action bar
         setHasOptionsMenu(true);
-
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            updateSettings = bundle.getBoolean("updateSettings");
-        }
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_jwplayerview, container, false);
@@ -130,17 +114,16 @@ public class JWPlayerViewExample extends Fragment implements
      * */
     private void setupJWPlayer() {
 
-        if (updateSettings) {
+        // if user clicked save
+        if (jwViewModel.didUserClickSave()) {
             config = jwViewModel.getPlayerConfig().getValue();
         }
+
+        // if the config is null from jwViewModel and in this class
         if (config == null) {
-            config = new PlayerConfig.Builder()
-                    .file("https://content.jwplatform.com/videos/8TbJTFy5-cIp6U8lV.mp4")
-                    .autostart(true)
-                    .preload(true)
-                    .allowCrossProtocolRedirects(true)
-                    .build();
+            config = jwViewModel.getDefaultConfig();
         }
+
         mPlayerView.setup(config);
     }
 
